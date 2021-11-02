@@ -2,6 +2,8 @@ package com.inforplus.user.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inforplus.user.dto.AccountCreateRequest;
+import com.inforplus.user.dto.AccountCreateRequestDto;
 import com.inforplus.user.models.Account;
 import com.inforplus.user.models.Purchase;
 import com.inforplus.user.repositories.AccountRepository;
@@ -29,7 +31,7 @@ public class AccountController  {
   }
  
   @PostMapping
-  public ResponseEntity<Account> createAccount(@RequestBody AccountCreateRequest request) {
+  public ResponseEntity<Account> createAccount(@Valid @RequestBody AccountCreateRequestDto request) {
     var account = new Account();
     account.setAmount(request.getAmount());
     account.setName(request.getName());
